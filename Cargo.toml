@@ -1,0 +1,43 @@
+[package]
+name = "cdk-ehash"
+version = "0.1.0"
+edition = "2021"
+authors = ["vnprc <9425366+vnprc@users.noreply.github.com>"]
+license = "MIT"
+description = "CDK MintPayment processor for Hashpool mining-share rewards"
+homepage = "https://github.com/vnprc/cdk-ehash"
+repository = "https://github.com/vnprc/cdk-ehash"
+readme = "README.md"
+keywords = ["cashu", "bitcoin", "mining", "hashpool", "ecash"]
+categories = ["cryptography::cryptocurrencies"]
+
+[dependencies]
+async-trait = "0.1"
+cdk-common = { version = "0.15.1", features = ["mint"] }
+futures = "0.3"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+tokio = { version = "1", features = ["sync"] }
+tokio-stream = "0.1"
+tokio-util = "0.7"
+tracing = "0.1"
+
+[dev-dependencies]
+bip39 = "2"
+cdk = { version = "0.15.1", features = ["mint"] }
+cdk-sqlite = "0.15.1"
+tokio = { version = "1", features = ["full"] }
+serde_json = "1"
+
+# Patch published cdk crates with upstream main until custom-unit derivation
+# (hashed_derivation_index) is released. The [patch] section is ignored by
+# cargo publish and does not affect downstream consumers of cdk-ehash.
+[patch.crates-io]
+cashu           = { git = "https://github.com/cashubtc/cdk", rev = "8517fcda" }
+cdk             = { git = "https://github.com/cashubtc/cdk", rev = "8517fcda" }
+cdk-common      = { git = "https://github.com/cashubtc/cdk", rev = "8517fcda" }
+cdk-http-client = { git = "https://github.com/cashubtc/cdk", rev = "8517fcda" }
+cdk-signatory   = { git = "https://github.com/cashubtc/cdk", rev = "8517fcda" }
+cdk-sql-common  = { git = "https://github.com/cashubtc/cdk", rev = "8517fcda" }
+cdk-sqlite      = { git = "https://github.com/cashubtc/cdk", rev = "8517fcda" }
